@@ -49,3 +49,58 @@ function likes(names) {
             return `${firstName}, ${secondName} and ${names.length} others like this`;
     }
 }
+
+/*  Created a swtich that will return a string based off of its conditions...
+    
+        -   First case checks if the length of the `names` array is 0... If so, return the string "no one likes this".
+        
+        -   Second case checks if the length of the `names` array is 1... If so, return the string the interpolated string `${names[0]} likes this`;
+        
+        -   Third case checks if the length of the `names` array is 2... If so, return the string the interpolated string `${names[0]} and ${names[1]} like this`;
+        
+        -   Fourth case checks if the length of the `names` array is 3... If so, return the string the interpolated string `${names[0]}, ${names[1]} and ${names[2]} like this`;
+        
+        -   If none of these cases are true, then we have a default case...
+        
+            -   Initialized two varaibles: `firstName` to hold the first element of `names` indexed at 0 and `Lastname`. We will splice this off of the array which is why we are saving them to two variables.
+            
+            -   We know return the string `${firstName}, ${secondName} and ${names.length} others like this`; (names.length will give the total length of the array which does not include the two elements we spliced (removed) from our array).
+*/
+
+// 3
+function findUniq(arr) {
+    const freq = {};
+    for (const num of arr) {
+        if (freq[num]) {
+            freq[num]++;
+        }
+        else {
+            freq[num] = 1;
+        }
+    }
+    for (const key in freq) {
+        if (freq[key] === 1) {
+            return Number(key);
+        }
+    }
+}
+
+/*  Created a hashmap called `freq` that is going to encapsulate key and value pairs; The keys will be each unique element that is within the array and the values will be how many occurences of the element have we seen in the array (const freq = {};).
+
+        -   Proceeded to create a for of loop...
+        
+            -   Initialized a varaible called `num` that represents every element within our array 
+            
+            -   Created an if block that checks if the current element `num` is a key that exisit within our `freq` hashmap. If it does already, increment it's value by 1.
+            
+            -   Created an else block that allows the `freq` hashmap to encapsulate the current element `num` as a key with an assigned value of 1 if our if block expression is false.
+        
+        -   Proceeded to create a for in loop...
+        
+            -   Initialized a varaible called `key` that represents every key within our `freq` hashmap
+            
+            -   Created an if block that checks if the current key's value `key` is exactly one (a single occurrence). If so, return that key.
+            
+            *IMPORTANT* By default, any key encapsulated within an object is set to the data type string, so we must convert the string back into a number when we return the non duplicate (unique) number of the array (Number(key) or +key)
+            
+*/
