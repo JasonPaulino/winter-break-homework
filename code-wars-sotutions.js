@@ -50,7 +50,7 @@ function likes(names) {
     }
 }
 
-/*  Created a swtich that will return a string based off of its conditions...
+/*  Created a switch that will return a string based on its conditions...
     
         -   First case checks if the length of the `names` array is 0... If so, return the string "no one likes this".
         
@@ -62,7 +62,7 @@ function likes(names) {
         
         -   If none of these cases are true, then we have a default case...
         
-            -   Initialized two varaibles: `firstName` to hold the first element of `names` indexed at 0 and `Lastname`. We will splice this off of the array which is why we are saving them to two variables.
+            -   Initialized two variables: `firstName` to hold the first element of `names` indexed at 0 and `Lastname`. We will splice this off of the array which is why we are saving them to two variables.
             
             -   We know return the string `${firstName}, ${secondName} and ${names.length} others like this`; (names.length will give the total length of the array which does not include the two elements we spliced (removed) from our array).
 */
@@ -85,22 +85,139 @@ function findUniq(arr) {
     }
 }
 
-/*  Created a hashmap called `freq` that is going to encapsulate key and value pairs; The keys will be each unique element that is within the array and the values will be how many occurences of the element have we seen in the array (const freq = {};).
+/*  Created a hashmap called `freq` that is going to encapsulate key and value pairs; The keys will be each unique element that is within the array and the values will be how many occurrences of the element have we seen in the array (const freq = {};).
 
         -   Proceeded to create a for of loop...
         
-            -   Initialized a varaible called `num` that represents every element within our array 
+            -   Initialized a variable called `num` that represents every element within our array `arr`
             
-            -   Created an if block that checks if the current element `num` is a key that exisit within our `freq` hashmap. If it does already, increment it's value by 1.
+            -   Created an if block that checks if the current element `num` is a key that exists within our `freq` hashmap. If it does already, increment its value by 1.
             
             -   Created an else block that allows the `freq` hashmap to encapsulate the current element `num` as a key with an assigned value of 1 if our if block expression is false.
         
-        -   Proceeded to create a for in loop...
+        -   Proceeded to create a for-in loop...
         
-            -   Initialized a varaible called `key` that represents every key within our `freq` hashmap
+            -   Initialized a variable called `key` that represents every key within our `freq` hashmap
             
             -   Created an if block that checks if the current key's value `key` is exactly one (a single occurrence). If so, return that key.
             
-            *IMPORTANT* By default, any key encapsulated within an object is set to the data type string, so we must convert the string back into a number when we return the non duplicate (unique) number of the array (Number(key) or +key)
+            *IMPORTANT* By default, any key encapsulated within an object is set to the data type string, so we must convert the string back into a number when we return the non-duplicate (unique) number of the array (Number(key) or +key)
             
 */
+
+
+// 4
+function findOutlier(integers) {
+    const even = [];
+    const odd = [];
+    for (const num of integers) {
+        if (num % 2 === 0) {
+            even.push(num);
+        }
+        else {
+            odd.push(num);
+        }
+    }
+    if (even.length === 1) {
+        return even[0];
+    }
+    else {
+        return odd[0];
+    }
+}
+
+/*  Created two variables, `even` and `odd`, with a value of an empty array. All the numbers that are odd will go within our `odd` array and vice versa.
+
+        -   Proceeded to create a for of loop...
+        
+            -   Initialized a varaible called `num` that represents every element within our array `integers`
+            
+            -   Created an if block that checks if the current element `num` is divisible by 2 with a remainder of 0. If so, it will push that element `num` into our `even` array.
+            
+            -   Created an else block that pushes the current element `num` to the array `odd` if the if expression is false
+        
+        -   Created an if block that checks if the the array `even` has a length of 1. If so, return the single element that is within the `even` array.
+        
+        -   Created an else block that returns the only element which is also the first element of the `odd` array
+*/
+
+// 5
+function duplicateCount(text) {
+    const freq = {};
+    const lowerCaseText = text.toLowerCase();
+    let result = 0;
+    for (const char of lowerCaseText) {
+        if (freq[char]) {
+            freq[char]++;
+        }
+        else {
+            freq[char] = 1;
+        }
+    }
+    for (const key in freq) {
+        if (freq[key] > 1) {
+            result++;
+        }
+    }
+    return result;
+}
+
+/*  Created three variables...
+
+        1). `freq` that is going to encapsulate key and value pairs; The keys will be each unique element that is within the string and the values will be how many occurrences of the element have we seen in the string.
+        
+        2). `lowerCaseText` which will store a lowercased version of the function input string
+        
+        3). `result` by default will store a value of 0. Whenever we find a key in our hashmap that has a value greater than 1, we will increase the `result` value by 1
+
+       -   Proceeded to create a for of loop...
+        
+            -   Initialized a variable called `char` that represents every element within our string `lowerCaseText`
+            
+            -   Created an if block that checks if the current element `char` is a key that exists within our `freq` hashmap. If it does already, increment its value by 1.
+            
+            -   Created an else block that allows the `freq` hashmap to encapsulate the current element `char` as a key with an assigned value of 1 if our if block expression is false.
+        
+        -   Proceeded to create a for-in loop...
+        
+            -   Initialized a variable called `key` that represents every key within our `freq` hashmap
+            
+            -   Created an if block that checks if the current key's value `key` is greater than one, increment the value of `result` by 1
+            
+        - Return the value of the `result` variable
+*/
+
+// 6 
+function moveZeros(arr) {
+    const nonZeros = arr.filter(ele => ele !== 0);
+    while (nonZeros.length < arr.length) {
+        nonZeros.push(0);
+    }
+    return nonZeros;
+}
+
+/*  Created a variable called `nonZeros` that holds the input array with zeros filtered out.
+
+    Proceeded to create a while loop...
+    
+        - As long as the length of the  `nonZeros` is less than the length of the input array, execute its block which is pushing the number zero into the `nonZeros` array at the end of the list. Once the lengthg of `nonZeros` and input array are equal to each other, the loop will stop
+        
+    - Return the array `nonZeros` with the zeros now at the end of the array
+*/
+
+// 7
+function pigIt(str) {
+    const strArr = str.split(" ");
+    let result = "";
+    for (let char of strArr) {
+        if (/[a-z]/gi.test(char)) {
+            let firstLetter = char.slice(0, 1);
+            char = char.slice(1);
+            result += `${char}${firstLetter}ay `;
+        }
+        else {
+            result += `${char} `;
+        }
+    }
+    return result.trim();
+}
